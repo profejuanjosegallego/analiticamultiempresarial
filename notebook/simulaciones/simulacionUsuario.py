@@ -28,5 +28,19 @@ def simular_usuarios(numeroUsuariosASimular):
             "correo":random.choice(correos)
         }
 
+        #Inyectar errores controlados en el set de datos
+        #(SE HACE PARA QUE LA RUTINA DE SIMULACION SEA LO MAS PARECIDO A LA REALIDAD)
+        probabilidadError=random.random()
+        if probabilidadError<0.2:
+            usuario_simulado["id"]=None
+        elif probabilidadError<0.4:
+            usuario_simulado["nombres"]=random.choice([None,"11","-10"])
+        elif probabilidadError<0.5:
+            usuario_simulado["contraseña"]=random.choice([None,"as","-"])
+        elif probabilidadError<0.7:
+            usuario_simulado["edad"]=random.choice([None,800,-10])
+        elif probabilidadError<0.9:
+            usuario_simulado["correo"]=" "+usuario_simulado["correo"]+" ".upper()
+
         simulaciones_usuario.append(usuario_simulado)
     return simulaciones_usuario
